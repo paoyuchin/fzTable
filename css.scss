@@ -24,11 +24,7 @@ $classname: 'fzTable';
 	@media screen and (min-width: $screen-lg-desktop) {
 		// style on desktop device
 	}
-	&_modifier {
-		div {
-			background-color: red;
-		}
-	}
+	&_modifier {}
 	&>.#{$classname}_child {}
 	& .#{$classname}_descendant {}
 }
