@@ -3,28 +3,76 @@
  */
 
 @import "../core/core/mixins";
-@import "../core/core/variables";
-/**
- * Define your classname
- */
-
+@import "../core/core/variables"; //Define  classname
 $classname: 'fzTable';
-/*
- * Start your css code
- */
-
-.#{$classname} {
-	// style on phone device
-	@media screen and (min-width: $screen-tablet) {
-		// style on tablet device
+//Define css 
+$blockWidth:12%;
+$blockHeight:10%;
+$block_bgc:rgb(233, 236, 241);
+$block_ColorText:rgb(144, 115, 118);
+$fzTable_rowBackgroundColor:gray;
+$crossColor:rgb(247, 247, 247);
+//common setting
+* {
+	box-sizing: border-box; // outline: 1px solid red;
+	vertical-align: bottom;
+	a {
+		display: inline-block;
+		line-height: 3.5;
+		margin-right: -4px;
+		border-bottom: 1px solid gray;
 	}
-	@media screen and (min-width: $screen-desktop) {
-		// style on desktop device
-	}
-	@media screen and (min-width: $screen-lg-desktop) {
-		// style on desktop device
-	}
-	&_modifier {}
-	&>.#{$classname}_child {}
-	& .#{$classname}_descendant {}
 }
+
+//Start your css code
+.#{$classname} {
+	@media screen and (min-width: $screen-xs) {
+		div:nth-child(1) {
+			background-color: $block_bgc;
+			color: black;
+			font-weight: 500;
+			color: $block_ColorText;
+			font-weight: 800;
+		}
+		div a:nth-child(1) {
+			background-color: rgb(241, 241, 241);
+			color: $block_ColorText;
+			font-weight: 800;
+			span {
+				font-size: 25px;
+				margin-right: 50px;
+			}
+		}
+		.row {
+			width: 100%;
+			a {
+				// border: 1px solid solid;
+				text-align: center;
+				width: 12.2%;
+				height: 10%;
+				padding-bottom: 15px;
+			}
+		}
+	}
+} // 320 style on phone device
+// .#{$classname} {
+// 	@media screen and (min-width: $screen-xs) {
+// 		.fzTable_row {
+// 			width: 80%;
+// 			background-color: $fzTable_rowBackgroundColor;
+// 		}
+// 	} // 320 style on phone device
+// 	@media screen and (min-width: $screen-sm) {
+// 		//768
+// 		// style on desktop device
+// 	}
+// }
+// &_modifier {
+// 	color: black;
+// }
+// &>.#{$classname}_child {
+// 	color: green;
+// }
+// & .#{$classname}_descendant {
+// 	color: pink;
+// }
