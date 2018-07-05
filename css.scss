@@ -9,70 +9,131 @@ $classname: 'fzTable';
 $blockWidth:12%;
 $blockHeight:10%;
 $block_bgc:rgb(233, 236, 241);
+$block_bgc_Column:rgb(241, 241, 241);
 $block_ColorText:rgb(144, 115, 118);
 $fzTable_rowBackgroundColor:gray;
 $crossColor:rgb(247, 247, 247);
+$click_button_bgColor:rgb(254, 249, 229);
+$click_button_border:orange;
 //common setting
 * {
-	box-sizing: border-box; // outline: 1px solid red;
-	vertical-align: bottom;
-	a {
-		display: inline-block;
-		line-height: 3.5;
-		margin-right: -4px;
-		border-bottom: 1px solid gray;
-	}
+	box-sizing: border-box;
+	outline: 1px solid red;
+	text-align: center;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
 }
 
 //Start your css code
 .#{$classname} {
 	@media screen and (min-width: $screen-xs) {
-		div:nth-child(1) {
-			background-color: $block_bgc;
-			color: black;
-			font-weight: 500;
-			color: $block_ColorText;
-			font-weight: 800;
+		body {
+			margin-top: 5px;
 		}
-		div a:nth-child(1) {
-			background-color: rgb(241, 241, 241);
-			color: $block_ColorText;
-			font-weight: 800;
-			span {
-				font-size: 25px;
-				margin-right: 50px;
+		font-size: 13px;
+		border: 1px solid lightgray; // width: 80%;
+		line-height: 1.5;
+		font-size: 15px;
+		tr,
+		td,
+		th {
+			border: 1px solid lightgray;
+		}
+		span {
+			font-size: 14px;
+		}
+		td,
+		th {
+			&:hover {
+				&:hover {
+					background-color: $click_button_bgColor;
+					border: 1px solid $click_button_border;
+				}
 			}
 		}
-		.row {
-			width: 100%;
-			a {
-				// border: 1px solid solid;
-				text-align: center;
-				width: 12.2%;
-				height: 10%;
-				padding-bottom: 15px;
+		td {
+			line-height: 2.5;
+		}
+		th {
+			line-height: 3;
+		}
+		tr:nth-child(1) {
+			font-weight: 800;
+			color: $block_ColorText;
+			background-color: $block_bgc;
+		}
+		tr td:nth-child(1) {
+			font-weight: 800;
+			color: $block_ColorText;
+			background-color: $block_bgc_Column;
+		}
+		th:nth-child(1) {
+			display: inline-block;
+		}
+		.gut_tag {
+			position: relative;
+			&:after {
+				display: block;
+				left: 0%;
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 10px 10px 0 0;
+				border-color: $click_button_border transparent transparent transparent;
+				content: '';
 			}
 		}
 	}
-} // 320 style on phone device
-// .#{$classname} {
-// 	@media screen and (min-width: $screen-xs) {
-// 		.fzTable_row {
-// 			width: 80%;
-// 			background-color: $fzTable_rowBackgroundColor;
-// 		}
-// 	} // 320 style on phone device
-// 	@media screen and (min-width: $screen-sm) {
-// 		//768
-// 		// style on desktop device
-// 	}
-// }
-// &_modifier {
-// 	color: black;
-// }
-// &>.#{$classname}_child {
-// 	color: green;
-// }
-// & .#{$classname}_descendant {
-// 	color: pink;
-// }
+	@media screen and (min-width: 768px) {
+		font-size: 20px;
+		margin-top: 5%;
+		margin-left: 5%;
+		width: 40%; //whole table width 
+		border: 1px solid lightgray; // width: 80%;
+		line-height: 3.5;
+		tr,
+		td,
+		th {
+			border: 1px solid lightgray;
+		}
+		td,
+		th {
+			&:hover {
+				&:hover {
+					background-color: $click_button_bgColor;
+					border: 1px solid $click_button_border;
+				}
+			}
+		}
+		tr:nth-child(1) {
+			font-weight: 800;
+			color: $block_ColorText;
+			background-color: $block_bgc;
+		}
+		tr td:nth-child(1) {
+			font-weight: 800;
+			color: $block_ColorText;
+			background-color: $block_bgc_Column;
+		}
+		th:nth-child(1) {
+			display: inline-block;
+			width: 100%;
+		}
+		.gut_tag {
+			position: relative;
+			&:after {
+				display: block;
+				left: 0%;
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 30px 30px 0 0;
+				border-color: $click_button_border transparent transparent transparent;
+				content: '';
+			}
+		}
+	}
+}
