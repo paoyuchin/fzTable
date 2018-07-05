@@ -1,5 +1,5 @@
 {
-  "name": "@magaele/frz-tabble",
+  "name": "@magaele/frz_table",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://git.liontech.com.tw/frz-tabble.git"
+    "url": "http://git.liontech.com.tw/frz_tabble.git"
   },
   "license": "ISC",
   "dependencies": {},

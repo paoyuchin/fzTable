@@ -187,19 +187,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * Define module name here 
- */
-var ModuleName = 'frz-tabble';
-/**
- * Props default value write here
- */
+//Define module name here 
+
+var ModuleName = 'frz_tabble';
+
+//Props default value write here
+
 var ModuleDefaults = {
-    properties: 'value'
+    properties: 'value',
+    gg: 'ininder'
 };
-/**
- * Define you want to get function returns from outside of scope
- */
+console.log(ModuleDefaults.gg); //ininder
+
+//Define you want to get function returns from outside of scope
 var ModuleReturns = [];
 
 var Module = function () {
@@ -209,12 +209,14 @@ var Module = function () {
         this.ele = ele;
         this.$ele = $(ele);
         this.option = options;
+        console.log('constructor this:' + this);
     }
 
     _createClass(Module, [{
         key: 'init',
         value: function init() {
             // first run here
+            console.log(this);
         }
     }, {
         key: 'methods',

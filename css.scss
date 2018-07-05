@@ -15,61 +15,70 @@ $fzTable_rowBackgroundColor:gray;
 $crossColor:rgb(247, 247, 247);
 $click_button_bgColor:rgb(254, 249, 229);
 $click_button_border:orange;
+$text-fzsie:20px;
+//Define class
+@mixin clearfix() {
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+	}
+}
+
+@mixin date-color {
+	background-color: $block_bgc_Column;
+	border-bottom: 1px solid gray;
+}
+
 //common setting
 * {
-	box-sizing: border-box;
-	outline: 1px solid red;
+	box-sizing: border-box; // outline: 1px solid red;
 	text-align: center;
 	border-spacing: 0;
 	margin: 0;
 	padding: 0;
 }
 
-//Start your css code
 .#{$classname} {
-	@media screen and (min-width: $screen-xs) {
-		body {
-			margin-top: 5px;
-		}
-		font-size: 13px;
-		border: 1px solid lightgray; // width: 80%;
-		line-height: 1.5;
-		font-size: 15px;
-		tr,
-		td,
-		th {
-			border: 1px solid lightgray;
-		}
-		span {
-			font-size: 14px;
-		}
-		td,
-		th {
-			&:hover {
-				&:hover {
-					background-color: $click_button_bgColor;
-					border: 1px solid $click_button_border;
-				}
+	@media screen and (min-width: $screen-phone) {
+		.gut_tag {
+			&:after {
+				border-width: 10px 10px 0 0;
 			}
 		}
-		td {
-			line-height: 2.5;
+		overflow: hidden;
+		font-size: $text-fzsie;
+		font-size: 7px;
+		width: 100%;
+		.col-1,
+		.col-2,
+		.col-3,
+		.col-4,
+		.col-5,
+		.col-6,
+		.col-7,
+		.col-8 {
+			width: 12.49%;
+			float: left;
+			line-height: 4.5;
+			border-top: 1px solid gray;
+			border-bottom: 1px solid gray;
+			border-left: 1px solid gray;
 		}
-		th {
-			line-height: 3;
-		}
-		tr:nth-child(1) {
-			font-weight: 800;
-			color: $block_ColorText;
+		.col-1 {
 			background-color: $block_bgc;
+			div:first-child {
+				font-size: 10px;
+			}
 		}
-		tr td:nth-child(1) {
-			font-weight: 800;
-			color: $block_ColorText;
-			background-color: $block_bgc_Column;
+		.col-8 {
+			border-right: 1px solid gray;
+			div:first-child {
+				border-right: 1px solid gray;
+			}
 		}
-		th:nth-child(1) {
-			display: inline-block;
+		.date-color {
+			@include date-color;
 		}
 		.gut_tag {
 			position: relative;
@@ -85,55 +94,44 @@ $click_button_border:orange;
 				content: '';
 			}
 		}
-	}
-	@media screen and (min-width: 768px) {
+	} //320px up
+	@media screen and (min-width: $screen-desktop) {
+		.gut_tag {
+			&:after {
+				border-width: 20px 20px 0 0;
+			}
+		}
+		margin-left: 10%;
+		font-size: $text-fzsie;
 		font-size: 20px;
 		margin-top: 5%;
-		margin-left: 5%;
-		width: 40%; //whole table width 
-		border: 1px solid lightgray; // width: 80%;
-		line-height: 3.5;
-		tr,
-		td,
-		th {
-			border: 1px solid lightgray;
+		width: 100%;
+		.col-1,
+		.col-2,
+		.col-3,
+		.col-4,
+		.col-5,
+		.col-6,
+		.col-7,
+		.col-8 {
+			width: 10%;
+			float: left;
+			line-height: 4.5;
+			border-top: 1px solid gray;
+			border-bottom: 1px solid gray;
+			border-left: 1px solid gray;
 		}
-		td,
-		th {
-			&:hover {
-				&:hover {
-					background-color: $click_button_bgColor;
-					border: 1px solid $click_button_border;
-				}
-			}
-		}
-		tr:nth-child(1) {
-			font-weight: 800;
-			color: $block_ColorText;
+		.col-1 {
 			background-color: $block_bgc;
 		}
-		tr td:nth-child(1) {
-			font-weight: 800;
-			color: $block_ColorText;
-			background-color: $block_bgc_Column;
-		}
-		th:nth-child(1) {
-			display: inline-block;
-			width: 100%;
-		}
-		.gut_tag {
-			position: relative;
-			&:after {
-				display: block;
-				left: 0%;
-				position: absolute;
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 30px 30px 0 0;
-				border-color: $click_button_border transparent transparent transparent;
-				content: '';
+		.col-8 {
+			border-right: 1px solid gray;
+			div:first-child {
+				border-right: 1px solid gray;
 			}
 		}
-	}
+		.data-color {
+			@include date-color;
+		}
+	} //768px up
 }
