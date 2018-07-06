@@ -187,20 +187,59 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-//Define module name here 
+//Define module name here
 
-var ModuleName = 'frz_tabble';
+var ModuleName = 'frz_table';
 
 //Props default value write here
-
 var ModuleDefaults = {
-    properties: 'value',
-    gg: 'ininder'
+    count: {
+        // M版時每次點擊往前往後移動幾格儲存格
+        slide: 1, // [number] 
+        // M版時一個畫面show幾格儲存格
+        show: 4 // [number] 
+    },
+    // 設定花多久時間移動完成
+    speed: .3, // [number] 
+    // 每次點擊儲存格時會執行此callback，並帶入所點擊的儲存格jquery物件
+    whenClick: function whenClick($element) {
+        // console.log($element)
+    }
 };
-console.log(ModuleDefaults.gg); //ininder
+//array dictionary
+['12/27(三)', '12/28(四)', '12/29(五)', '12/30(六)', '12/31(日)', '01/1(一)', '01/2(二)', '01/3(三)', '01/4(四)', '01/5(四)'];
 
 //Define you want to get function returns from outside of scope
-var ModuleReturns = [];
+var ModuleReturns = ['methods']; //string
+
+
+function on_clicked() {
+    $('.date').click(function () {
+        var f = $(this).data('forth');
+        var b = $(this).data('back');
+        var selected_row = $('.date[data-forth=' + f + ']');
+        var selected_col = $('.date[data-back=' + b + ']');
+        console.log('f:' + f + 'b:' + b);
+
+        $(this).removeClass('selected');
+        $('.date').removeClass('add_selected_bg');
+        $('.date').removeClass('selected');
+
+        $(this).addClass('selected');
+        selected_row.addClass('add_selected_bg');
+        selected_col.addClass('add_selected_bg');
+    });
+}; //on click
+
+
+function mouseover() {
+    $(".date").mouseover(function () {
+        $('.date').removeClass('mousover_effect');
+        $(this).addClass('mousover_effect');
+    });
+} //hover
+on_clicked();
+mouseover();
 
 var Module = function () {
     function Module(ele, options) {
@@ -209,15 +248,18 @@ var Module = function () {
         this.ele = ele;
         this.$ele = $(ele);
         this.option = options;
-        console.log('constructor this:' + this);
+        this.$btnLeft = $('.btn-left');
+        this.$btnRight = $('.btn-right');
+        this.$selected = $('.selected');
+        this.$date = $('.date');
     }
 
     _createClass(Module, [{
         key: 'init',
-        value: function init() {
-            // first run here
-            console.log(this);
-        }
+        value: function init() {}
+        // this.changeColor();
+        //run first here
+
     }, {
         key: 'methods',
         value: function methods() {
@@ -228,6 +270,7 @@ var Module = function () {
     return Module;
 }();
 
+;
 exports.ModuleName = ModuleName;
 exports.ModuleDefaults = ModuleDefaults;
 exports.ModuleReturns = ModuleReturns;

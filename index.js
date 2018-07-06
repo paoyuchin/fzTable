@@ -1,4 +1,9 @@
-import { ModuleName, ModuleDefaults, ModuleReturns, Module } from './script/module.js';
+import {
+    ModuleName,
+    ModuleDefaults,
+    ModuleReturns,
+    Module
+} from './script/module.js';
 const root = ((root) => {
     if (typeof root === 'object' && (root.self === root || root.global === global) && root) {
         return root;

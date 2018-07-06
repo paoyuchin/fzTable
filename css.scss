@@ -2,25 +2,29 @@
  * Import core mixins, variables, or others
  */
 
-@import "../core/core/mixins";
-@import "../core/core/variables"; //Define  classname
-$classname: 'fzTable';
-//Define css 
+@import "./core/core.scss";
+@import "./core/core/mixins";
+@import "./core/core/variables"; //Define  classname
+$classname: 'frz_table';
+//Define css
 $blockWidth:12%;
 $blockHeight:10%;
 $block_bgc:rgb(233, 236, 241);
 $block_bgc_Column:rgb(241, 241, 241);
 $block_ColorText:rgb(144, 115, 118);
 $fzTable_rowBackgroundColor:gray;
-$crossColor:rgb(247, 247, 247);
+$crossColor:$light-gray-light;
 $click_button_bgColor:rgb(254, 249, 229);
 $click_button_border:orange;
 $text-fzsie:20px;
+$mousover_border_color:orange;
 //Define class
 @mixin clearfix() {
 	&::after {
 		display: block;
 		content: "";
+		color: orange;
+		font-size: 20px;
 		clear: both;
 	}
 }
@@ -30,6 +34,21 @@ $text-fzsie:20px;
 	border-bottom: 1px solid gray;
 }
 
+.mousover_effect {
+	outline: 1px solid $mousover_border_color;
+}
+
+.selected {
+	background-color: lightyellow !important;
+	outline: 1px solid $mousover_border_color;
+	opacity: .8;
+	border: 1px solid orange;
+}
+
+.add_selected_bg {
+	background-color: $crossColor;
+}
+
 //common setting
 * {
 	box-sizing: border-box; // outline: 1px solid red;
@@ -37,6 +56,10 @@ $text-fzsie:20px;
 	border-spacing: 0;
 	margin: 0;
 	padding: 0;
+}
+
+body {
+	overflow: hidden;
 }
 
 .#{$classname} {
@@ -64,12 +87,12 @@ $text-fzsie:20px;
 			border-top: 1px solid gray;
 			border-bottom: 1px solid gray;
 			border-left: 1px solid gray;
+			div {
+				border-bottom: 1px solid gray;
+			}
 		}
 		.col-1 {
 			background-color: $block_bgc;
-			div:first-child {
-				font-size: 10px;
-			}
 		}
 		.col-8 {
 			border-right: 1px solid gray;
@@ -77,34 +100,60 @@ $text-fzsie:20px;
 				border-right: 1px solid gray;
 			}
 		}
-		.date-color {
+		.col_head {
 			@include date-color;
 		}
 		.gut_tag {
 			position: relative;
+			&:before {
+				display: inline-block;
+				left: 17%;
+				top: -11%;
+				font-size: 10px;
+				position: absolute;
+				content: "最便宜";
+				color: orange;
+			}
 			&:after {
-				display: block;
+				display: inline-block;
 				left: 0%;
 				position: absolute;
 				width: 0;
 				height: 0;
 				border-style: solid;
-				border-width: 10px 10px 0 0;
+				border-width: 4px 4px 0 0;
 				border-color: $click_button_border transparent transparent transparent;
-				content: '';
+				content: "";
 			}
 		}
 	} //320px up
 	@media screen and (min-width: $screen-desktop) {
+		margin: 0 10%;
+		margin-top: 5%;
 		.gut_tag {
 			&:after {
-				border-width: 20px 20px 0 0;
+				border-width: 30px 30px 0 0;
 			}
 		}
-		margin-left: 10%;
+		;
+		.go_forth {
+			width: 100%;
+			line-height: 3;
+			span {
+				display: inline-block;
+				&:nth-child(1) {
+					position: absolute;
+					left: 11%;
+					top: 15.3%;
+				}
+				&:nth-child(2) {
+					position: relative;
+					right: -32%;
+				}
+			}
+		}
 		font-size: $text-fzsie;
 		font-size: 20px;
-		margin-top: 5%;
 		width: 100%;
 		.col-1,
 		.col-2,
@@ -116,10 +165,13 @@ $text-fzsie:20px;
 		.col-8 {
 			width: 10%;
 			float: left;
-			line-height: 4.5;
+			line-height: 3;
 			border-top: 1px solid gray;
 			border-bottom: 1px solid gray;
 			border-left: 1px solid gray;
+			div {
+				border-bottom: 1px solid gray;
+			}
 		}
 		.col-1 {
 			background-color: $block_bgc;
@@ -130,8 +182,11 @@ $text-fzsie:20px;
 				border-right: 1px solid gray;
 			}
 		}
-		.data-color {
+		.col_head {
 			@include date-color;
+		}
+		.date {
+			cursor: pointer;
 		}
 	} //768px up
 }
