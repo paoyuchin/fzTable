@@ -2528,6 +2528,15 @@
     :global .col-lg-offset-24 {
       margin-left: 100%; } }
 
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 1px solid red;
+  text-align: center;
+  border-spacing: 0;
+  margin: 0;
+  padding: 0; }
+
 .mousover_effect {
   outline: 1px solid orange; }
 
@@ -2540,130 +2549,92 @@
 .add_selected_bg {
   background-color: #e3e3e3; }
 
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  text-align: center;
-  border-spacing: 0;
-  margin: 0;
-  padding: 0; }
+.gut_tag:after {
+  border-width: 10px 10px 0 0; }
 
-body {
-  overflow: hidden; }
-
-@media screen and (min-width: 320px) {
-  .frz_table {
-    overflow: hidden;
-    font-size: 20px;
-    font-size: 7px;
-    width: 100%; }
-    .frz_table .gut_tag:after {
-      border-width: 10px 10px 0 0; }
-    .frz_table .col-1,
-    .frz_table .col-2,
-    .frz_table .col-3,
-    .frz_table .col-4,
-    .frz_table .col-5,
-    .frz_table .col-6,
-    .frz_table .col-7,
-    .frz_table .col-8 {
-      width: 12.49%;
-      float: left;
-      line-height: 4.5;
-      border-top: 1px solid gray;
-      border-bottom: 1px solid gray;
-      border-left: 1px solid gray; }
-      .frz_table .col-1 div,
-      .frz_table .col-2 div,
-      .frz_table .col-3 div,
-      .frz_table .col-4 div,
-      .frz_table .col-5 div,
-      .frz_table .col-6 div,
-      .frz_table .col-7 div,
-      .frz_table .col-8 div {
-        border-bottom: 1px solid gray; }
-    .frz_table .col-1 {
-      background-color: #e9ecf1; }
-    .frz_table .col-8 {
-      border-right: 1px solid gray; }
-      .frz_table .col-8 div:first-child {
+.frz_table {
+  padding: 0;
+  width: 100%; }
+  @media screen and (min-width: 320px) {
+    .frz_table {
+      font-size: 15px; }
+      .frz_table .col-1 {
+        float: left;
+        width: 20%;
+        line-height: 4.3;
         border-right: 1px solid gray; }
-    .frz_table .col_head {
-      background-color: #f1f1f1;
-      border-bottom: 1px solid gray; }
-    .frz_table .gut_tag {
-      position: relative; }
-      .frz_table .gut_tag:before {
-        display: inline-block;
-        left: 17%;
-        top: -11%;
-        font-size: 10px;
-        position: absolute;
-        content: "最便宜";
-        color: orange; }
-      .frz_table .gut_tag:after {
-        display: inline-block;
-        left: 0%;
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 4px 4px 0 0;
-        border-color: orange transparent transparent transparent;
-        content: ""; } }
-
-@media screen and (min-width: 980px) {
-  .frz_table {
-    margin: 0 10%;
-    margin-top: 5%;
-    font-size: 20px;
-    font-size: 20px;
-    width: 100%; }
-    .frz_table .gut_tag:after {
-      border-width: 30px 30px 0 0; }
-    .frz_table .go_forth {
-      width: 100%;
-      line-height: 3; }
-      .frz_table .go_forth span {
-        display: inline-block; }
-        .frz_table .go_forth span:nth-child(1) {
+        .frz_table .col-1 div {
+          border-bottom: 1px solid gray; }
+      .frz_table .slider {
+        float: left;
+        width: 80%;
+        position: relative;
+        overflow: hidden;
+        height: 520px; }
+        .frz_table .slider .overflow {
           position: absolute;
-          left: 11%;
-          top: 15.3%; }
-        .frz_table .go_forth span:nth-child(2) {
-          position: relative;
-          right: -32%; }
-    .frz_table .col-1,
-    .frz_table .col-2,
-    .frz_table .col-3,
-    .frz_table .col-4,
-    .frz_table .col-5,
-    .frz_table .col-6,
-    .frz_table .col-7,
-    .frz_table .col-8 {
-      width: 10%;
-      float: left;
-      line-height: 3;
-      border-top: 1px solid gray;
-      border-bottom: 1px solid gray;
-      border-left: 1px solid gray; }
-      .frz_table .col-1 div,
-      .frz_table .col-2 div,
-      .frz_table .col-3 div,
-      .frz_table .col-4 div,
-      .frz_table .col-5 div,
-      .frz_table .col-6 div,
-      .frz_table .col-7 div,
-      .frz_table .col-8 div {
+          height: 520px;
+          float: left; }
+          .frz_table .slider .overflow .column {
+            line-height: 4.3;
+            float: left;
+            border-right: 1px solid gray; }
+      .frz_table .column {
+        float: left;
+        width: 150px;
+        line-height: 4.5;
+        position: relative; }
+        .frz_table .column div {
+          border-bottom: 1px solid gray; }
+      .frz_table .col_head {
+        background-color: #f1f1f1;
         border-bottom: 1px solid gray; }
+      .frz_table .gut_tag {
+        position: relative; }
+        .frz_table .gut_tag:before {
+          display: inline-block;
+          left: 17%;
+          top: -11%;
+          font-size: 10px;
+          position: absolute;
+          content: "最便宜";
+          color: orange; }
+        .frz_table .gut_tag:after {
+          display: inline-block;
+          left: 0%;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 4px 4px 0 0;
+          border-color: orange transparent transparent transparent;
+          content: ""; }
+      .frz_table .btn-left,
+      .frz_table .btn-right {
+        text-align: center;
+        display: inline-block;
+        margin: 5px;
+        width: 25px;
+        font-size: 14px;
+        background-color: gray;
+        position: absolute;
+        color: white;
+        opacity: .4;
+        height: 50px;
+        padding-top: 15px; }
+      .frz_table .btn-left {
+        top: 50%;
+        left: 20%; }
+      .frz_table .btn-right {
+        right: 1%;
+        top: 50%; } }
+  @media screen and (min-width: 980px) {
+    .frz_table .col-xs-24 {
+      overflow: hidden; }
     .frz_table .col-1 {
-      background-color: #e9ecf1; }
-    .frz_table .col-8 {
-      border-right: 1px solid gray; }
-      .frz_table .col-8 div:first-child {
-        border-right: 1px solid gray; }
-    .frz_table .col_head {
-      background-color: #f1f1f1;
-      border-bottom: 1px solid gray; }
-    .frz_table .date {
-      cursor: pointer; } }
+      width: 10%; }
+    .frz_table .column {
+      cursor: pointer; }
+    .frz_table .btn-left,
+    .frz_table .btn-right {
+      display: none; } }

@@ -188,58 +188,74 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 //Define module name here
-
 var ModuleName = 'frz_table';
 
 //Props default value write here
 var ModuleDefaults = {
     count: {
         // M版時每次點擊往前往後移動幾格儲存格
-        slide: 1, // [number] 
+        slide: 1, // [number]
         // M版時一個畫面show幾格儲存格
-        show: 4 // [number] 
+        show: 4 // [number]
     },
     // 設定花多久時間移動完成
-    speed: .3, // [number] 
+    speed: .3, // [number]
     // 每次點擊儲存格時會執行此callback，並帶入所點擊的儲存格jquery物件
     whenClick: function whenClick($element) {
-        // console.log($element)
+        console.log($element);
     }
 };
-//array dictionary
-['12/27(三)', '12/28(四)', '12/29(五)', '12/30(六)', '12/31(日)', '01/1(一)', '01/2(二)', '01/3(三)', '01/4(四)', '01/5(四)'];
 
 //Define you want to get function returns from outside of scope
-var ModuleReturns = ['methods']; //string
+var ModuleReturns = []; //string
 
+function onMouseClick() {
+    var $this = $(this);
+    var $cell = $('.date');
+    var _ref = [$this.data('forth'), $this.data('back')],
+        f = _ref[0],
+        b = _ref[1];
 
-function on_clicked() {
-    $('.date').click(function () {
-        var f = $(this).data('forth');
-        var b = $(this).data('back');
-        var selected_row = $('.date[data-forth=' + f + ']');
-        var selected_col = $('.date[data-back=' + b + ']');
-        console.log('f:' + f + 'b:' + b);
+    var $row = $('.date[data-forth=' + f + ']');
+    var $col = $('.date[data-back=' + b + ']');
+    $this.removeClass('selected');
+    $cell.removeClass('add_selected_bg selected');
+    $this.addClass('selected');
+    $row.addClass('add_selected_bg');
+    $col.addClass('add_selected_bg');
+    console.log('f:' + f + 'b:' + b);
+}
 
-        $(this).removeClass('selected');
-        $('.date').removeClass('add_selected_bg');
-        $('.date').removeClass('selected');
+function onMouseOver() {
+    $('.date').removeClass('mousover_effect');
+    $(this).addClass('mousover_effect');
+}
 
-        $(this).addClass('selected');
-        selected_row.addClass('add_selected_bg');
-        selected_col.addClass('add_selected_bg');
-    });
-}; //on click
+function slide(dir) {
+    var left = parseInt($('.overflow').css('left'));
+    if (dir === 'left') {
 
+        $('.overflow').animate({
+            left: "+=" + this.option.count.slide * this.colWidth
+        }, {
+            speed: this.option.speed
+        });
+        if ($('.overflow').css('left') == "0px") {
+            return;
+        }
+    } else {
+        console.log(left - this.option.count.show * this.colWidth + "px");
+        if ($('.overflow').css('left') == "-" + left - this.option.count.show * this.colWidth + "px") {
+            return;
+        }
+        $('.overflow').animate({
+            left: "-=" + this.option.count.slide * this.colWidth
+        }, {
+            speed: this.option.speed
+        });
+    }
+}; //slide
 
-function mouseover() {
-    $(".date").mouseover(function () {
-        $('.date').removeClass('mousover_effect');
-        $(this).addClass('mousover_effect');
-    });
-} //hover
-on_clicked();
-mouseover();
 
 var Module = function () {
     function Module(ele, options) {
@@ -250,21 +266,33 @@ var Module = function () {
         this.option = options;
         this.$btnLeft = $('.btn-left');
         this.$btnRight = $('.btn-right');
-        this.$selected = $('.selected');
-        this.$date = $('.date');
+        this.$cell = $('.date');
     }
 
     _createClass(Module, [{
         key: 'init',
-        value: function init() {}
-        // this.changeColor();
-        //run first here
+        value: function init() {
+            this.$cell.click(onMouseClick);
+            this.$cell.mouseover(onMouseOver);
+            var tmp1 = $('.column').css('width');
+            var tmp2 = $('.overflow').css('width');
+            $(window).resize(function () {
+                var winWidth = $(window).width();
+                this.colWidth = (winWidth - $('.col-1').width()) / this.option.count.show;
+                // this.colWidth -= 1;
+                if (winWidth <= 980) {
+                    $('.column').css('width', this.colWidth);
+                    $('.overflow').css('width', this.colWidth * 8);
+                } else {
+                    $('.column').css('width', tmp1);
+                    $('.overflow').css('width', tmp2);
+                }
+            }.bind(this));
+            $(window).resize();
+            this.$btnLeft.click(slide.bind(this, 'left')); //btnLeft
+            this.$btnRight.click(slide.bind(this, 'right')); //btnLeft
+        } //run first here
 
-    }, {
-        key: 'methods',
-        value: function methods() {
-            return this;
-        }
     }]);
 
     return Module;
