@@ -2531,7 +2531,6 @@
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  outline: 1px solid red;
   text-align: center;
   border-spacing: 0;
   margin: 0;
@@ -2562,6 +2561,7 @@
         float: left;
         width: 20%;
         line-height: 4.3;
+        border-left: 1px solid gray;
         border-right: 1px solid gray; }
         .frz_table .col-1 div {
           border-bottom: 1px solid gray; }
@@ -2571,6 +2571,10 @@
         position: relative;
         overflow: hidden;
         height: 520px; }
+        .frz_table .slider div {
+          border-bottom: 1px solid gray; }
+        .frz_table .slider .col-2 {
+          border-left: 1px solid transparent; }
         .frz_table .slider .overflow {
           position: absolute;
           height: 520px;
@@ -2588,7 +2592,8 @@
           border-bottom: 1px solid gray; }
       .frz_table .col_head {
         background-color: #f1f1f1;
-        border-bottom: 1px solid gray; }
+        border-bottom: 1px solid gray;
+        border-top: 1px solid gray; }
       .frz_table .gut_tag {
         position: relative; }
         .frz_table .gut_tag:before {
@@ -2629,6 +2634,9 @@
         right: 1%;
         top: 50%; } }
   @media screen and (min-width: 980px) {
+    .frz_table .frz_table {
+      margin-left: 5%;
+      margin-top: 5%; }
     .frz_table .col-xs-24 {
       overflow: hidden; }
     .frz_table .col-1 {

@@ -49,7 +49,7 @@ $.fn[ModuleName] = function () {
                 methodRunner.call(this, method, options);
             } else {
                 opts = $.extend(true, {}, ModuleDefaults, (typeof method === 'object' && method), (typeof options === 'object' && options));
-                module = new Module(this, opts);
+                module = new Module(this, opts); 
                 $this.data(ModuleName, module);
                 module.init();
             }
