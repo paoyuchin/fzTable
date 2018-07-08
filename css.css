@@ -2536,6 +2536,13 @@
   margin: 0;
   padding: 0; }
 
+.clearfix::after {
+  display: block;
+  content: "";
+  color: orange;
+  font-size: 20px;
+  clear: both; }
+
 .mousover_effect {
   outline: 1px solid orange; }
 
@@ -2548,74 +2555,80 @@
 .add_selected_bg {
   background-color: #e3e3e3; }
 
-.gut_tag:after {
-  border-width: 10px 10px 0 0; }
-
-.frz_table {
+.frztable {
   padding: 0;
   width: 100%; }
   @media screen and (min-width: 320px) {
-    .frz_table {
+    .frztable {
       font-size: 15px; }
-      .frz_table .col-1 {
-        float: left;
-        width: 20%;
-        line-height: 4.3;
-        border-left: 1px solid gray;
-        border-right: 1px solid gray; }
-        .frz_table .col-1 div {
-          border-bottom: 1px solid gray; }
-      .frz_table .slider {
-        float: left;
-        width: 80%;
-        position: relative;
-        overflow: hidden;
-        height: 520px; }
-        .frz_table .slider div {
-          border-bottom: 1px solid gray; }
-        .frz_table .slider .col-2 {
-          border-left: 1px solid transparent; }
-        .frz_table .slider .overflow {
-          position: absolute;
-          height: 520px;
-          float: left; }
-          .frz_table .slider .overflow .column {
-            line-height: 4.3;
-            float: left;
-            border-right: 1px solid gray; }
-      .frz_table .column {
-        float: left;
-        width: 150px;
-        line-height: 4.5;
+      .frztable .gut_tag {
         position: relative; }
-        .frz_table .column div {
-          border-bottom: 1px solid gray; }
-      .frz_table .col_head {
-        background-color: #f1f1f1;
-        border-bottom: 1px solid gray;
-        border-top: 1px solid gray; }
-      .frz_table .gut_tag {
-        position: relative; }
-        .frz_table .gut_tag:before {
+        .frztable .gut_tag:before {
           display: inline-block;
           left: 17%;
-          top: -11%;
+          top: -20%;
           font-size: 10px;
           position: absolute;
           content: "最便宜";
           color: orange; }
-        .frz_table .gut_tag:after {
+        .frztable .gut_tag:after {
           display: inline-block;
           left: 0%;
           position: absolute;
           width: 0;
           height: 0;
           border-style: solid;
-          border-width: 4px 4px 0 0;
+          border-width: 20px 20px 0 0;
           border-color: orange transparent transparent transparent;
           content: ""; }
-      .frz_table .btn-left,
-      .frz_table .btn-right {
+      .frztable .frztable_col-1 {
+        float: left;
+        width: 20%;
+        line-height: 4.3;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray; }
+        .frztable .frztable_col-1 div {
+          border-bottom: 1px solid gray; }
+      .frztable .frztable_slider {
+        float: left;
+        width: 80%;
+        position: relative;
+        overflow: hidden;
+        height: 520px; }
+        .frztable .frztable_slider div {
+          border-bottom: 1px solid gray; }
+        .frztable .frztable_slider .frztable_col-2 {
+          border-left: 1px solid transparent; }
+        .frztable .frztable_slider .frztable_overflow {
+          position: absolute;
+          height: 520px;
+          float: left; }
+          .frztable .frztable_slider .frztable_overflow .frztable_column {
+            line-height: 4.3;
+            float: left;
+            border-right: 1px solid gray; }
+      .frztable .frztable_column {
+        float: left;
+        width: 150px;
+        line-height: 4.5;
+        position: relative; }
+        .frztable .frztable_column div {
+          border-bottom: 1px solid gray; }
+      .frztable .frztable_col_head {
+        background-color: #f1f1f1;
+        border-bottom: 1px solid gray;
+        border-top: 1px solid gray; }
+        .frztable .frztable_col_head span {
+          display: inline;
+          position: relative; }
+          .frztable .frztable_col_head span:nth-child(1) {
+            bottom: -18px;
+            left: -2px; }
+          .frztable .frztable_col_head span:nth-child(2) {
+            bottom: 18px;
+            left: 2px; }
+      .frztable .frztable_btn-left,
+      .frztable .frztable_btn-right {
         text-align: center;
         display: inline-block;
         margin: 5px;
@@ -2627,22 +2640,33 @@
         opacity: .4;
         height: 50px;
         padding-top: 15px; }
-      .frz_table .btn-left {
+      .frztable .frztable_btn-left {
         top: 50%;
         left: 20%; }
-      .frz_table .btn-right {
+      .frztable .frztable_btn-right {
         right: 1%;
         top: 50%; } }
   @media screen and (min-width: 980px) {
-    .frz_table .frz_table {
+    .frztable .frztablefrz_table {
       margin-left: 5%;
       margin-top: 5%; }
-    .frz_table .col-xs-24 {
-      overflow: hidden; }
-    .frz_table .col-1 {
+    .frztable .frztable_col-1 {
       width: 10%; }
-    .frz_table .column {
+    .frztable .frztable_column {
       cursor: pointer; }
-    .frz_table .btn-left,
-    .frz_table .btn-right {
-      display: none; } }
+    .frztable .frztable_btn-left,
+    .frztable .frztable_btn-right {
+      display: none; }
+    .frztable .frztable_col_head {
+      background-color: #f1f1f1;
+      border-bottom: 1px solid gray;
+      border-top: 1px solid gray; }
+      .frztable .frztable_col_head span {
+        display: inline;
+        position: relative; }
+        .frztable .frztable_col_head span:nth-child(1) {
+          bottom: -18px;
+          left: -31px; }
+        .frztable .frztable_col_head span:nth-child(2) {
+          bottom: 18px;
+          left: 27px; } }
