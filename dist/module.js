@@ -220,12 +220,12 @@ function onMouseClick(event) {
   $this.addClass("selected");
   $(event.data.target + "_date[data-forth=" + f + "]").addClass("add_selected_bg");
   $(event.data.target + "_date[data-back=" + b + "]").addClass("add_selected_bg");
-  console.log("f:", f, "b:", b);
+  // console.log("f:", f, "b:", b);
   console.log(event.data.whenClickCallback($this));
 }
 
 function onMouseOver(event) {
-  console.log(event.data.target);
+  // console.log(event.data.target);
   $(event.data.target + "_date").removeClass("mousover_effect");
   $(this).addClass("mousover_effect");
 }
@@ -255,20 +255,16 @@ function slide(dir) {
 } //slide
 
 function onResize() {
-  var winWidth = $(window).width();
-  this.colWidth = (winWidth - $(this.target + "_col-1").width()) / this.option.count.show;
-  // this.colWidth -= 1;
+  var winWidth = $(window).width(); //抓取window的寬度
+  this.colWidth = (winWidth - $(this.target + "_col-1").width()) / this.option.count.show; //全部window-固定的window寬度/show設定的寬度
   if (winWidth <= 980) {
-    console.log($(this.target + "_column").css("width"));
-    console.log("-----------");
-    console.log("overflow:" + $(this.target + "_overflow").css("width"));
+    var aa = $(this.target + "_overflow").removeAttr('style');
     $(this.target + "_column").css("width", this.colWidth);
     $(this.target + "_overflow").css("width", this.colWidth * 7);
   } else {
-    $(this.target + "_column").css("width", this.tmp1);
-    $(this.target + "_overflow").css("width", this.tmp2);
+    $(this.target + "_overflow").attr('style', 'left:0');
   }
-} //
+} //條回原本電腦版的設定
 
 var Module = function () {
   function Module(ele, options) {
@@ -292,13 +288,21 @@ var Module = function () {
       this.$cell.mouseover({
         target: this.target
       }, onMouseOver);
-      this.tmp1 = $(this.target + "_column").css("width");
-      this.tmp2 = $(this.target + "_overflow").css("width");
+
+      // this.tmp1 = $(this.target + "_column").css("width");
+      // console.log('this.tmp1', this.tmp1)
+      // this.tmp2 = $(this.target + "_overflow").css("width");
+      // console.log('this.tmp2', this.tmp2)
+
       $(window).resize(onResize.bind(this));
       $(window).resize();
+
       this.$btnLeft.click(slide.bind(this, "left")); //btnLeft
       this.$btnRight.click(slide.bind(this, "right")); //btnLeft
     } //run first here
+    // onResize() {
+
+    // }
 
   }]);
 

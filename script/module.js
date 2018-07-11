@@ -12,7 +12,7 @@ const ModuleDefaults = {
   // 設定花多久時間移動完成
   speed: 0.3, // [number]
   // 每次點擊儲存格時會執行此callback，並帶入所點擊的儲存格jquery物件
-  whenClick: function($element) {
+  whenClick: function ($element) {
     console.log($element);
   }
 };
@@ -32,12 +32,12 @@ function onMouseClick(event) {
   $(event.data.target + "_date[data-back=" + b + "]").addClass(
     "add_selected_bg"
   );
-  console.log("f:", f, "b:", b);
+  // console.log("f:", f, "b:", b);
   console.log(event.data.whenClickCallback($this));
 }
 
 function onMouseOver(event) {
-  console.log(event.data.target);
+  // console.log(event.data.target);
   $(event.data.target + "_date").removeClass("mousover_effect");
   $(this).addClass("mousover_effect");
 }
@@ -60,8 +60,7 @@ function slide(dir) {
     op = "-=";
     this.firstCol += change;
   }
-  $(this.target + "_overflow").animate(
-    {
+  $(this.target + "_overflow").animate({
       left: op + change * this.colWidth
     },
     this.option.speed * 1000
@@ -70,21 +69,17 @@ function slide(dir) {
 } //slide
 
 function onResize() {
-  let winWidth = $(window).width();
-  this.colWidth =
-    (winWidth - $(this.target + "_col-1").width()) / this.option.count.show;
-  // this.colWidth -= 1;
+  let winWidth = $(window).width(); //抓取window的寬度
+  this.colWidth = (winWidth - $(this.target + "_col-1").width()) / this.option.count.show; //全部window-固定的window寬度/show設定的寬度
   if (winWidth <= 980) {
-    console.log($(this.target + "_column").css("width"));
-    console.log("-----------");
-    console.log("overflow:" + $(this.target + "_overflow").css("width"));
+    let aa = $(this.target + "_overflow").removeAttr('style');
     $(this.target + "_column").css("width", this.colWidth);
     $(this.target + "_overflow").css("width", this.colWidth * 7);
   } else {
-    $(this.target + "_column").css("width", this.tmp1);
-    $(this.target + "_overflow").css("width", this.tmp2);
+    $(this.target + "_overflow").attr('style', 'left:0');
   }
-} //
+} //條回原本電腦版的設定
+
 class Module {
   constructor(ele, options) {
     this.target = ".frztable";
@@ -96,25 +91,36 @@ class Module {
   }
 
   init() {
-    this.$cell.click(
-      {
+    this.$cell.click({
         whenClickCallback: this.option.whenClick,
         target: this.target
       },
       onMouseClick
     );
-    this.$cell.mouseover(
-      {
+    this.$cell.mouseover({
         target: this.target
       },
       onMouseOver
     );
-    this.tmp1 = $(this.target + "_column").css("width");
-    this.tmp2 = $(this.target + "_overflow").css("width");
+
+    // this.tmp1 = $(this.target + "_column").css("width");
+    // console.log('this.tmp1', this.tmp1)
+    // this.tmp2 = $(this.target + "_overflow").css("width");
+    // console.log('this.tmp2', this.tmp2)
+
     $(window).resize(onResize.bind(this));
     $(window).resize();
+
     this.$btnLeft.click(slide.bind(this, "left")); //btnLeft
     this.$btnRight.click(slide.bind(this, "right")); //btnLeft
   } //run first here
+  // onResize() {
+
+  // }
 }
-export { ModuleName, ModuleDefaults, ModuleReturns, Module };
+export {
+  ModuleName,
+  ModuleDefaults,
+  ModuleReturns,
+  Module
+};

@@ -1,200 +1,117 @@
-/**
- * Import core mixins, variables, or others
- */
-
 @import "./core/core.scss";
 @import "./core/core/mixins";
 @import "./core/core/variables"; //Define  classname
-$classname: 'frztable';
-//Define css
-$block_bgc:rgb(233, 236, 241);
-$block_bgc_Column:rgb(241, 241, 241);
-$crossColor:$light-gray-light;
-$click_button_bgColor:rgb(254, 249, 229);
-$click_button_border:orange;
-$text-fzsie:20px;
-$mousover_border_color:orange;
-//common setting
 * {
 	box-sizing: border-box; // outline: 1px solid red;
 	text-align: center;
 	border-spacing: 0;
 	margin: 0;
 	padding: 0;
+	text-decoration: none;
+	list-style-type: none;
 }
 
-//Define class
-.clearfix {
-	&::after {
-		display: block;
-		content: "";
-		color: orange;
-		font-size: 20px;
-		clear: both;
-	}
+body {
+	height: 10000px;
+} //Define class｀
+$className: calendars;
+$btnColor:#e10500;
+$btnBgC:rgb(237, 233, 222);
+$txtColor:#666;
+$distableedbgc:#f8f8f8;
+$greenTagColor:#66bb3c; //active class
+.activetxtColor {
+	color: $btnColor;
 }
 
-@mixin date-color {
-	background-color: $block_bgc_Column;
-	border-bottom: 1px solid gray;
-}
-
-//Module.js
-.mousover_effect {
-	outline: 1px solid $mousover_border_color;
-}
-
-.selected {
-	background-color: lightyellow !important;
-	outline: 1px solid $mousover_border_color;
-	opacity: .8;
-	border: 1px solid orange;
-}
-
-.add_selected_bg {
-	background-color: $crossColor;
-}
-
-//major setting
-.#{$classname} {
-	padding: 0;
-	width: 100%;
-	@media screen and (min-width: 320px) {
-		.gut_tag {
-			position: relative;
-			&:before {
+.activeBorderColor {
+	border: 2px solid $greenTagColor;
+} //
+.#{$className} {
+	width: 50%;
+	height: auto;
+	text-align: center;
+	border: 1px solid lightgray;
+	& .#{$className}_tabWrap {
+		background-color: $btnBgC;
+		width: 100%;
+		.tabBox {
+			height: 50px;
+			width: 100%;
+			div,
+			span {
 				display: inline-block;
-				left: 17%;
-				top: -20%;
-				font-size: 10px;
+			}
+		}
+		.btn {
+			font-size: 20px;
+			width: 3%;
+			i {
+				color: $btnColor;
+			}
+		}
+		.tab {
+			color: $txtColor;
+			font-size: 17px;
+			width: 30%;
+			padding-bottom: 15px;
+		}
+	}
+	& .#{$className}_weeksWrap {
+		width: 100%;
+		color: $txtColor;
+		font-weight: 800;
+		span {
+			display: inline-block;
+			width: 14.2%;
+			margin-left: -4px;
+			font-size: 16px;
+		}
+	}
+	& .#{$className}_daysWrap {
+		width: 100%;
+		.disabled {
+			background-color: $distableedbgc;
+		}
+		.hasData {
+			height: 85px;
+			padding: 3px;
+			margin-left: -4px;
+			width: 14.2%;
+			border-top: 1px solid lightgray;
+			display: inline-block; // outline  : 1px solid gray;
+			border-left: 1px solid lightgray;
+			font-size: 12px;
+			position: relative;
+			.GuaranteedTripTag {
 				position: absolute;
-				content: "最便宜";
+				right: 0;
+				top: 0;
+				background-color: $greenTagColor;
+				color: white;
+			}
+			div {
+				text-align: left;
+			}
+			span {
+				display: inline-block;
+			}
+			.status {
+				color: #24a07c;
+			}
+			.status_orange {
 				color: orange;
 			}
-			&:after {
-				display: inline-block;
-				left: 0%;
-				position: absolute;
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 20px 20px 0 0;
-				border-color: $click_button_border transparent transparent transparent;
-				content: "";
+			.sell {
+				color: #666;
+			}
+			.group {
+				color: #666;
+			}
+			.price {
+				color: $btnColor;
+				font-weight: 800;
 			}
 		}
-		font-size: 15px;
-		& .#{$classname}_col-1 {
-			float: left;
-			width: 20%;
-			line-height: 4.3;
-			border-left: 1px solid gray;
-			border-right: 1px solid gray;
-			div {
-				border-bottom: 1px solid gray;
-			}
-		}
-		& .#{$classname}_slider {
-			div {
-				border-bottom: 1px solid gray;
-			}
-			& .#{$classname}_col-2 {
-				border-left: 1px solid transparent;
-			}
-			float: left;
-			width: 80%;
-			position: relative;
-			overflow: hidden;
-			height: 520px;
-			& .#{$classname}_overflow {
-				position: absolute;
-				height: 520px;
-				float: left;
-				& .#{$classname}_column {
-					line-height: 4.3;
-					float: left;
-					border-right: 1px solid gray;
-				}
-			}
-		}
-		& .#{$classname}_column {
-			float: left;
-			width: 150px;
-			line-height: 4.5;
-			position: relative;
-			div {
-				border-bottom: 1px solid gray;
-			}
-		}
-		& .#{$classname}_col_head {
-			@include date-color;
-			border-top: 1px solid gray;
-			span {
-				display: inline;
-				position: relative;
-				&:nth-child(1) {
-					bottom: -18px;
-					left: -2px;
-				}
-				&:nth-child(2) {
-					bottom: 18px;
-					left: 2px;
-				}
-			}
-		}
-		& .#{$classname}_btn-left,
-		& .#{$classname}_btn-right {
-			text-align: center;
-			display: inline-block;
-			margin: 5px;
-			width: 25px;
-			font-size: 14px;
-			background-color: gray;
-			position: absolute;
-			color: white;
-			opacity: .4;
-			height: 50px;
-			padding-top: 15px;
-		}
-		& .#{$classname}_btn-left {
-			top: 50%;
-			left: 20%;
-		}
-		& .#{$classname}_btn-right {
-			right: 1%;
-			top: 50%;
-		}
-	} //320px up
-	@media screen and (min-width: $screen-desktop) {
-		& .#{$classname}frz_table {
-			margin-left: 5%;
-			margin-top: 5%;
-		}
-		& .#{$classname}_col-1 {
-			width: 10%;
-		}
-		& .#{$classname}_column {
-			cursor: pointer;
-		}
-		& .#{$classname}_btn-left,
-		& .#{$classname}_btn-right {
-			display: none;
-		}
-		& .#{$classname}_col_head {
-			@include date-color;
-			border-top: 1px solid gray;
-			span {
-				display: inline;
-				position: relative;
-				&:nth-child(1) {
-					bottom: -18px;
-					left: -31px;
-				}
-				&:nth-child(2) {
-					bottom: 18px;
-					left: 27px;
-				}
-			}
-		}
-	} //768px up
-}
+	}
+} //end
